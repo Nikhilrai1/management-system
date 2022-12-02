@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar{
+    scroll-behavior: smooth;
+    width: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgb(60, 61, 62);
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: #535252;
+    padding-left: 1px;
+    padding-right: 1px;
+    border-radius: 20px;
+}
+.sidebar{
+    overflow-y: auto;
+}
+
+.profilesetting{
+    display: none;
+}
+
+.threedot:hover .profilesetting{
+    display: block;
+}
