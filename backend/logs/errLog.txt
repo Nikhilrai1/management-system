@@ -1,0 +1,39 @@
+Sat Nov 19 2022 12:19:45 GMT+0545 (Nepal Time) 	 undefined ReferenceError: jwt is not defined	 GET	 undefined	  undefined 
+Sat Nov 19 2022 15:30:24 GMT+0545 (Nepal Time) 	 undefined ValidationError: Student validation failed: password: Required Password	 PUT	 undefined	  undefined 
+Sat Nov 19 2022 15:53:18 GMT+0545 (Nepal Time) 	 undefined ReferenceError: Token is not defined	 POST	 undefined	  undefined 
+Sat Nov 19 2022 16:00:05 GMT+0545 (Nepal Time) 	 undefined ReferenceError: Token is not defined	 POST	 undefined	  undefined 
+Sat Nov 19 2022 16:00:13 GMT+0545 (Nepal Time) 	 undefined ReferenceError: Token is not defined	 POST	 undefined	  undefined 
+Sat Nov 19 2022 16:09:19 GMT+0545 (Nepal Time) 	 undefined ReferenceError: Token is not defined	 PUT	 undefined	  undefined 
+Sat Nov 19 2022 17:46:29 GMT+0545 (Nepal Time) 	 undefined TypeError: Cannot read properties of null (reading 'role')	 POST	 undefined	  undefined 
+Sat Nov 19 2022 17:55:47 GMT+0545 (Nepal Time) 	 undefined TypeError: Cannot read properties of undefined (reading '_id')	 POST	 undefined	  undefined 
+Sat Nov 19 2022 18:28:28 GMT+0545 (Nepal Time) 	 undefined TypeError: Cannot read properties of null (reading 'role')	 GET	 undefined	  undefined 
+Sat Nov 19 2022 19:34:42 GMT+0545 (Nepal Time) 	 undefined TypeError: Cannot read properties of null (reading 'role')	 PATCH	 undefined	  undefined 
+Sat Nov 19 2022 19:36:04 GMT+0545 (Nepal Time) 	 undefined ReferenceError: user is not defined	 PATCH	 undefined	  undefined 
+Sat Nov 19 2022 20:11:21 GMT+0545 (Nepal Time) 	 undefined MongoServerError: E11000 duplicate key error collection: 63779fa722e1d31471357edc_HeraldManagement.teachers index: mobile_1 dup key: { mobile: "9813590910" }	 PATCH	 undefined	  undefined 
+Sat Nov 19 2022 20:14:50 GMT+0545 (Nepal Time) 	 undefined TypeError: Cannot read properties of null (reading 'role')	 GET	 undefined	  undefined 
+Tue Nov 29 2022 22:20:44 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 POST	 undefined	  http://127.0.0.1:5173 
+Tue Nov 29 2022 22:21:45 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 POST	 undefined	  http://127.0.0.1:5173 
+Tue Nov 29 2022 22:25:38 GMT+0545 (Nepal Time) 	 undefined ValidationError: Student validation failed: name: Required name	 POST	 undefined	  http://127.0.0.1:5173 
+Tue Nov 29 2022 22:27:58 GMT+0545 (Nepal Time) 	 undefined ValidationError: Student validation failed: grade: Required Grade	 POST	 undefined	  http://127.0.0.1:5173 
+Tue Nov 29 2022 22:31:33 GMT+0545 (Nepal Time) 	 undefined ValidationError: Student validation failed: name: Required name	 POST	 undefined	  http://127.0.0.1:5173 
+Wed Nov 30 2022 18:20:47 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 POST	 undefined	  http://127.0.0.1:5173 
+Wed Nov 30 2022 18:21:24 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 POST	 undefined	  http://127.0.0.1:5173 
+Wed Nov 30 2022 19:48:03 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 POST	 undefined	  http://127.0.0.1:5173 
+Wed Nov 30 2022 19:51:31 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 POST	 undefined	  http://127.0.0.1:5173 
+Wed Nov 30 2022 20:32:11 GMT+0545 (Nepal Time) 	 undefined ReferenceError: id is not defined	 POST	 undefined	  http://127.0.0.1:5173 
+Wed Nov 30 2022 20:32:20 GMT+0545 (Nepal Time) 	 undefined ReferenceError: id is not defined	 POST	 undefined	  http://127.0.0.1:5173 
+Wed Nov 30 2022 20:34:51 GMT+0545 (Nepal Time) 	 undefined ReferenceError: id is not defined	 POST	 undefined	  http://127.0.0.1:5173 
+Wed Nov 30 2022 20:46:12 GMT+0545 (Nepal Time) 	 undefined ReferenceError: id is not defined	 POST	 undefined	  undefined 
+Wed Nov 30 2022 20:46:39 GMT+0545 (Nepal Time) 	 undefined ReferenceError: id is not defined	 POST	 undefined	  undefined 
+Wed Nov 30 2022 20:47:56 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 POST	 undefined	  undefined 
+Wed Nov 30 2022 20:48:15 GMT+0545 (Nepal Time) 	 undefined ReferenceError: id is not defined	 POST	 undefined	  undefined 
+Wed Nov 30 2022 21:32:48 GMT+0545 (Nepal Time) 	 undefined ReferenceError: password is not defined	 POST	 undefined	  undefined 
+Wed Nov 30 2022 21:33:25 GMT+0545 (Nepal Time) 	 undefined ReferenceError: password is not defined	 POST	 undefined	  undefined 
+Wed Nov 30 2022 21:34:41 GMT+0545 (Nepal Time) 	 undefined ReferenceError: password is not defined	 POST	 undefined	  undefined 
+Wed Nov 30 2022 21:34:59 GMT+0545 (Nepal Time) 	 undefined ReferenceError: password is not defined	 POST	 undefined	  undefined 
+Wed Nov 30 2022 21:36:23 GMT+0545 (Nepal Time) 	 undefined ReferenceError: email is not defined	 POST	 undefined	  undefined 
+Wed Nov 30 2022 21:37:11 GMT+0545 (Nepal Time) 	 undefined ReferenceError: mobile is not defined	 POST	 undefined	  undefined 
+Thu Dec 01 2022 21:57:15 GMT+0545 (Nepal Time) 	 undefined ReferenceError: Parents is not defined	 GET	 undefined	  undefined 
+Thu Dec 01 2022 21:57:16 GMT+0545 (Nepal Time) 	 undefined ReferenceError: Parents is not defined	 GET	 undefined	  undefined 
+Thu Dec 01 2022 22:30:25 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 POST	 undefined	  http://127.0.0.1:5173 
+Thu Dec 01 2022 22:36:06 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 POST	 undefined	  http://127.0.0.1:5173 
