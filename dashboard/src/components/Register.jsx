@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { BiBook, BiBookContent, BiIdCard, BiLockAlt } from 'react-icons/bi'
 import { GoLocation } from 'react-icons/go'
 import { FiMail, FiUser } from 'react-icons/fi'
@@ -10,11 +10,8 @@ import { MdOutlineSchool } from 'react-icons/md'
 import { GiTeacher, GiUpgrade } from 'react-icons/gi'
 import { TbSection } from 'react-icons/tb'
 import { FaUserGraduate } from 'react-icons/fa'
-import axios from 'axios'
-
-
-
-
+import DropDown from './DropDown'
+import KidList from './KidList'
 const Input = ({ name, title, type, icon, placeholder, value, onChange, isFullWidth, min, max, disabled }) => {
     return (
         <div className={`${isFullWidth ? "w-full" : "w-1/2"} px-3 mb-5`}>
@@ -35,7 +32,6 @@ const Input = ({ name, title, type, icon, placeholder, value, onChange, isFullWi
         </div>
     )
 }
-
 const OptionInput = ({ name, title, icon, value, onChange, options }) => {
     return (
         <div className={`w-1/2 px-3 mb-5`}>
@@ -54,9 +50,6 @@ const OptionInput = ({ name, title, icon, value, onChange, options }) => {
     )
 }
 
-// grade level
-// school 1-10
-// +2 or bachleor -> science management humanities
 
 const studyLevels = [
     {
@@ -198,55 +191,6 @@ const registerRole = [
     },
 ]
 
-const student = {
-    id: "",
-    fullname: "",
-    email: "",
-    password: "",
-    address: "",
-    gender: "male",
-    profilePicture: "",
-    bio: "",
-    studyLevel: "+2",
-    stream: "science",
-    grade: "",
-    section: "A",
-    roll: "",
-    dob: "",
-    mobile: "",
-    role: "student"
-}
-
-const teacher = {
-    id: "",
-    fullname: "",
-    email: "",
-    password: "",
-    address: "",
-    gender: "male",
-    profilePicture: "",
-    bio: "",
-    subject: "science",
-    dob: "",
-    mobile: "",
-    role: "teacher"
-}
-
-const parents = {
-    id: "",
-    fullname: "",
-    email: "",
-    password: "",
-    address: "",
-    gender: "male",
-    profilePicture: "",
-    bio: "",
-    dob: "",
-    mobile: "",
-    parentsOf: [],
-    role: "parents"
-}
-
 const teacherSubjects = [
     {
         name: "Science",
@@ -298,10 +242,74 @@ const teacherSubjects = [
     },
 ]
 
-const Register = () => {
+const searchForOptions = [
+    {
+        name: "Fullname",
+        value: "fullname"
+    },
+    {
+        name: "Kid ID",
+        value: "id"
+    },
+]
+
+const student = {
+    id: "",
+    fullname: "",
+    email: "",
+    password: "",
+    address: "",
+    gender: "male",
+    profilePicture: "",
+    bio: "",
+    studyLevel: "+2",
+    stream: "science",
+    grade: "",
+    section: "A",
+    roll: "",
+    dob: "",
+    mobile: "",
+    role: "student"
+}
+
+const teacher = {
+    id: "",
+    fullname: "",
+    email: "",
+    password: "",
+    address: "",
+    gender: "male",
+    profilePicture: "",
+    bio: "",
+    subject: "science",
+    dob: "",
+    mobile: "",
+    role: "teacher"
+}
+
+const parents = {
+    id: "",
+    fullname: "",
+    email: "",
+    password: "",
+    address: "",
+    gender: "male",
+    profilePicture: "",
+    bio: "",
+    dob: "",
+    mobile: "",
+    parentsOf: [],
+    role: "parents"
+}
+
+
+
+const Register = ({ students }) => {
     const [role, setRole] = useState("student");
     const [form, setForm] = useState(teacher);
-    const [kidId, setKidId] = useState("");
+    const [search, setSearch] = useState("");
+    const [searchFor, setSearchFor] = useState("fullname");
+
 
     const handleInput = (e) => {
         setForm(prev => {
@@ -312,26 +320,15 @@ const Register = () => {
         })
     }
 
-    const handleKidId = (e) => {
-        setKidId(e.target.value)
+    const handleSearch = (e) => {
+        setSearch(e.target.value)
     }
 
-    const handleSearchId = (studentId) => {
-        setKidId(studentId)
-        if(!form.parentsOf.includes(studentId)){
-            setForm(prev => {
-                return {
-                    ...prev,
-                    parentsOf: [...form.parentsOf, kidId]
-                }
-            })
-        }
-        else{
-            alert("Children ID already set")
-        }
+    const handleSearchFor = (e) => {
+        setSearchFor(e.target.value)
     }
 
-    const registerStudent = async () => {
+    const registerUser = async () => {
         try {
             const res = await fetch(`/api/auth/${role}/register`, {
                 method: 'POST',
@@ -354,6 +351,14 @@ const Register = () => {
         catch (err) {
             console.log(err)
         }
+    }
+
+    const setKid = (kid) => {
+        if (!form.parentsOf.includes(kid)) {
+            form.parentsOf.push(kid);
+        }
+        setSearch("")
+        console.log(form.parentsOf)
     }
 
     useEffect(() => {
@@ -530,27 +535,37 @@ const Register = () => {
                                     />
                                 </div>
                                 {form.role === "parents" && (
-                                    <div className="flex -mx-3">
-                                        <Input
-                                            name={"kidId"}
-                                            title={"Kid Id"}
-                                            icon={<BiIdCard />}
-                                            isFullWidth={false}
-                                            value={kidId}
-                                            onChange={handleKidId}
-                                            placeholder={"Search kid ID"}
-                                            type={"text"}
-                                        />
-                                        <div className="w-1/2 px-3 flex items-center justify-center">
-                                            <button onClick={() => handleSearchId(kidId)} className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">Search ID</button>
+                                    <div className="relative">
+                                        <div className="flex -mx-3">
+                                            <Input
+                                                name={"Kid"}
+                                                title={"Kid"}
+                                                icon={<BiIdCard />}
+                                                isFullWidth={true}
+                                                value={search}
+                                                onChange={handleSearch}
+                                                placeholder={"Search kid"}
+                                                type={"text"}
+                                            />
+                                            <OptionInput
+                                                name={"searchFor"}
+                                                title={"Search For"}
+                                                value={searchFor}
+                                                icon={<TbSection />}
+                                                onChange={handleSearchFor}
+                                                options={searchForOptions}
+                                            />
+
+                                        </div>
+                                        <div className="flex absolute z-50 w-full bg-gray-100 ">
+                                            {search && (<DropDown search={search} searchFor={searchFor} setKid={setKid} students={students} />)}
                                         </div>
                                     </div>
                                 )}
-                                {form.role === "parents" && (<div className="flex -mx-3">
-                                    {form.parentsOf.map((item, index) => (
-                                        <span key={index}>{item}</span>
-                                    ))}
-                                </div>)}
+
+                                {(form.role === "parents" && form.parentsOf.length != 0) && (
+                                    <KidList kids={form.parentsOf} />
+                                )}
                                 <div className="flex -mx-3">
                                     <Input
                                         name={"email"}
@@ -577,7 +592,7 @@ const Register = () => {
                                 </div>
                                 <div className="flex -mx-3">
                                     <div className="w-full px-3 mb-5">
-                                        <button onClick={() => registerStudent()} className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">REGISTER</button>
+                                        <button onClick={() => registerUser()} className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">REGISTER</button>
                                     </div>
                                 </div>
                             </div>

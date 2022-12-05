@@ -5,12 +5,11 @@ import { deleteUser } from '../utils/authServices';
 
 
 const Children = ({parentsOf}) => {
-    console.log(parentsOf)
-    const [child,setChild] = useState(parentsOf[0]);
+    const [child,setChild] = useState(parentsOf[0].id);
     return (
         <select onChange={(e) => setChild(e.target.value)} name={"children"} value={child} >
             {parentsOf.map((item, index) => (
-                <option key={index} className='w-full text-start' value={item}>{item}</option>
+                <option key={index} className='w-full text-start' value={item.id}>{item.fullname}</option>
             ))}
         </select>
     )

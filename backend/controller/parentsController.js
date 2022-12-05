@@ -44,11 +44,19 @@ const registerParents = asyncHandler(async (req, res) => {
     const idExists = await Teacher.findOne({ id }) || await Student.findOne({ id }) || await Parents.findOne({ id });
     const emailExists = await Teacher.findOne({ email }) || await Student.findOne({ email }) || await Parents.findOne({ email });
     const mobileExists = await Teacher.findOne({ mobile }) || await Student.findOne({ mobile }) || await Parents.findOne({ mobile });
-    // parentsOf.forEach(async (id) => {
-    //     const childExistsAlready = await Student.findOne({ id });
-    //     if(childExistsAlready) return res.status(400).json({ success: false, message: `child  having id: ${id} is not your...` })
+    parentsOf.forEach(async (kid) => {
+        const student = await Student.findOne({ id: kid.id });
+        if(!student) return res.status(400).json({ success: false, message: `child  having id: ${id} is not found` })
+    })
+
+    // const parents = await Parents.find();
+    // parents.forEach(parent => {
+    //     parentsOf.forEach(student => {
+    //         if(parent.parentsOf.includes(student)){
+    //             return res.status(400).json({ success: false, message: `child  having id: ${student.id} is not your` })
+    //         }
+    //     })
     // })
-    console.log({ idExists, emailExists, mobileExists })
 
     if (idExists || emailExists || mobileExists) return res.status(400).json({ success: false, message: `please add unique id, email, & mobile` })
 
