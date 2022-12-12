@@ -56,7 +56,7 @@ function Dashboard() {
                         ))}
                     </div>
                     <div className="grid grid-cols-1 xl:grid-cols-2 my-5 gap-5">
-                        <div className="p-5 rounded-md shadow-xl drop-shadow-xl border-2">
+                        <div style={{color: themeColor, backgroundColor: theme}} className="p-5 rounded-md shadow-xl drop-shadow-xl border-2">
                             <div className="flex flex-col justify-start">
                                 <h2 className="text-bold text-2xl">Earnings</h2>
                                 <p className="py-2 text-gray-600">Accademic year {new Date().getFullYear()} AD</p>
@@ -68,7 +68,7 @@ function Dashboard() {
                                 />
                             </div>
                         </div>
-                        <div className="p-5 rounded-md shadow-xl drop-shadow-xl border-2">
+                        <div style={{color: themeColor, backgroundColor: theme}} className="p-5 rounded-md shadow-xl drop-shadow-xl border-2">
                             <div className="flex flex-col justify-start">
                                 <h2 className="text-bold text-2xl">New Students</h2>
                                 <p className="py-2 text-gray-600">Accademic year {new Date().getFullYear()} AD</p>

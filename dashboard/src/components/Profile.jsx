@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import { BiEdit, BiShareAlt } from 'react-icons/bi';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getTheme } from '../app/features/themeSlice';
 
 const Profile = ({ profile }) => {
     const [showSetting, setShowSetting] = useState(false);
+    const { theme, themeColor, themeHoverColor } = useSelector(getTheme)
+    const navigate = useNavigate()
     return (
         <div className="h-full bg-gray-200 p-8">
             <div className="bg-white rounded-lg shadow-xl pb-8">
@@ -19,7 +24,7 @@ const Profile = ({ profile }) => {
                                 <BiShareAlt />
                                 <span className="text-sm text-gray-700">Share Profile</span>
                             </button>
-                            <button className="w-full flex items-center py-1.5 px-6 space-x-2 hover:bg-gray-200">
+                            <button onClick={() => navigate("/update",{state: {profile: profile}})} className="w-full flex items-center py-1.5 px-6 space-x-2 hover:bg-gray-200">
                                 <BiEdit />
                                 <span className="text-sm text-gray-700">Edit Profile</span>
                             </button>
@@ -54,7 +59,7 @@ const Profile = ({ profile }) => {
                 </div>
             </div >
 
-            <div className="my-4 flex flex-col 2xl:flex-row space-y-4 2xl:space-y-0 2xl:space-x-4">
+            <div className="my-4 flex flex-col xl:flex-row space-y-4 xl:space-y-0 xl:space-x-4">
                 <div className="w-full flex flex-col 2xl:w-1/3">
                     <div className="flex-1 bg-white rounded-lg shadow-xl p-8">
                         <h4 className="text-xl text-gray-900 font-bold">Personal Info</h4>

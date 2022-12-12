@@ -1,50 +1,254 @@
 import React from 'react'
+import { useState } from 'react'
+import { BiBookContent, BiEdit, BiShareAlt } from 'react-icons/bi';
+import { BsChatLeft, BsThreeDotsVertical } from 'react-icons/bs';
+import { FiUpload, FiUser } from 'react-icons/fi'
+import { GiUpgrade } from 'react-icons/gi';
+import { MdOutlineSchool } from 'react-icons/md';
+import { TbSection } from 'react-icons/tb';
+import { OptionInput } from './formcomponents/OptionInput';
+import Ripples from "react-ripples"
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
+const plusTwoGrade = [
+    {
+        name: "Grade 11",
+        value: "Grade 11"
+    },
+    {
+        name: "Grade 12",
+        value: "Grade 12"
+    },
+]
+
+const bachelorsGrade = [
+    {
+        name: "1st Year",
+        value: "1st Year"
+    },
+    {
+        name: "2nd Year",
+        value: "2nd Year"
+    },
+    {
+        name: "3rd Year",
+        value: "3rd Year"
+    },
+]
+
+const studyLevels = [
+    {
+        name: "School",
+        value: "school"
+    },
+    {
+        name: "+2",
+        value: "+2"
+    },
+    {
+        name: "bachelors",
+        value: "bachelors"
+    },
+]
+
+const stream = [
+    {
+        name: "Management",
+        value: "management"
+    },
+    {
+        name: "Science",
+        value: "science"
+    },
+    {
+        name: "Humanities",
+        value: "humanities"
+    },
+]
+
+const sectionOptions = [
+    {
+        name: "A",
+        value: "A"
+    },
+    {
+        name: "B",
+        value: "B"
+    },
+    {
+        name: "C",
+        value: "C"
+    },
+]
+
+const schoolGrade = [
+    {
+        name: "Grade 1",
+        value: "Grade 1",
+    },
+    {
+        name: "Grade 2",
+        value: "Grade 2",
+    },
+    {
+        name: "Grade 3",
+        value: "Grade 3",
+    },
+    {
+        name: "Grade 4",
+        value: "Grade 4",
+    },
+    {
+        name: "Grade 5",
+        value: "Grade 5",
+    },
+    {
+        name: "Grade 6",
+        value: "Grade 6",
+    },
+    {
+        name: "Grade 7",
+        value: "Grade 7",
+    },
+    {
+        name: "Grade 8",
+        value: "Grade 8",
+    },
+    {
+        name: "Grade 9",
+        value: "Grade 9",
+    },
+    {
+        name: "Grade 10",
+        value: "Grade 10",
+    },
+]
+const studentAssignment = {
+    studyLevel: "+2",
+    stream: "science",
+    grade: "12",
+    section: "A",
+    description: "",
+}
 const Upload = () => {
+    const [form, setForm] = useState(studentAssignment);
+    const [showSetting, setShowSetting] = useState(false);
+    const handleInput = (e) => {
+        setForm(prev => {
+            return {
+                ...prev,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+
     return (
-        <div className="min-h-screen flex justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 bg-no-repeat bg-cover relative items-center"
-            style={{background: "url(https://images.unsplash.com/photo-1621243804936-775306a8f2e3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)"}}>
-            <div className="absolute bg-black opacity-60 inset-0 z-0"></div>
-            <div className="sm:max-w-lg w-full p-10 bg-white rounded-xl z-10">
-                <div className="text-center">
-                    <h2 className="mt-5 text-3xl font-bold text-gray-900">
-                        File Upload!
-                    </h2>
-                    <p className="mt-2 text-sm text-gray-400">Lorem ipsum is placeholder text.</p>
-                </div>
-                <form className="mt-8 space-y-3" action="#" method="POST">
-                    <div className="grid grid-cols-1 space-y-2">
-                        <label className="text-sm font-bold text-gray-500 tracking-wide">Title</label>
-                        <input className="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500" type="" placeholder="mail@gmail.com" />
-                    </div>
-                    <div className="grid grid-cols-1 space-y-2">
-                        <label className="text-sm font-bold text-gray-500 tracking-wide">Attach Document</label>
-                        <div className="flex items-center justify-center w-full">
-                            <label className="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center">
-                                <div className="h-full w-full text-center flex flex-col  justify-center items-center  ">
-
-                                    <div className="flex flex-auto max-h-48 w-2/5 mx-auto -mt-10">
-                                        <img className="has-mask h-36 object-center" src="https://img.freepik.com/free-vector/image-upload-concept-landing-page_52683-27130.jpg?size=338&ext=jpg" alt="freepik image" />
-                                    </div>
-                                    <p className="pointer-none text-gray-500 "><span className="text-sm">Drag and drop</span> files here <br /> or <a href="" id="" className="text-blue-600 hover:underline">select a file</a> from your computer</p>
-                                </div>
-                                <input type="file" className="hidden" />
-                            </label>
+        <div className="max-h-fit rounded-xl border w-full  sm:px-8 md:px-16 sm:py-8">
+            <main className="container mx-auto max-w-[900px] h-full">
+                <article aria-label="Assignment" className="relative p-5 border h-full flex flex-col bg-white shadow-xl rounded-md">
+                    <header>
+                        <div className="flex text-blue-400 items-center gap-5 my-5">
+                            <div className="text-4xl">
+                                <BsChatLeft />
+                            </div>
+                            <p className='text-2xl'>Assignment</p>
                         </div>
-                    </div>
-                    <p className="text-sm text-gray-300">
-                        <span>File type: doc,pdf,types of images</span>
-                    </p>
-                    <div>
-                        <button type="submit" className="my-5 w-full flex justify-center bg-blue-500 text-gray-100 p-4  rounded-full tracking-wide
-                                        font-semibold  focus:outline-none focus:shadow-outline hover:bg-blue-600 shadow-lg cursor-pointer transition ease-in duration-300">
-                            Upload
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+                        <div className="flex -mx-3">
+                            <OptionInput
+                                name={"studyLevel"}
+                                title={"Study Level"}
+                                value={form.studyLevel}
+                                icon={<MdOutlineSchool />}
+                                onChange={handleInput}
+                                options={studyLevels}
+                            />
+                            <OptionInput
+                                name={"stream"}
+                                title={"Stream"}
+                                value={form.stream}
+                                icon={<BiBookContent />}
+                                onChange={handleInput}
+                                options={form.studyLevel === "school" ? [{ name: "School", value: "school" }] : stream}
+                            />
+                        </div>
+                        <div className="flex -mx-3">
+                            <OptionInput
+                                name={"grade"}
+                                title={"Grade"}
+                                value={form.grade}
+                                icon={<GiUpgrade />}
+                                onChange={handleInput}
+                                options={form.studyLevel === "school" ? schoolGrade : form.studyLevel === "+2" ? plusTwoGrade : bachelorsGrade}
+                            />
+                            <OptionInput
+                                name={"section"}
+                                title={"Section"}
+                                value={form.section}
+                                icon={<TbSection />}
+                                onChange={handleInput}
+                                options={sectionOptions}
+                            />
+                        </div>
+                    </header>
+                    <section>
 
+                        {/* text area */}
+                        <div>
+                            <label htmlFor="message" className="block mb-2 text-sm font-medium text-blue-300">Write something about assignment</label>
+                            <textarea name='description' value={form.description} onChange={handleInput} id="message" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="Write your thoughts here..."></textarea>
+                        </div>
+
+                        {/* display attachfile */}
+                        <ul className="flex flex-col items-center my-5 w-full">
+                            <li className="border mb-5 py-1 sm:py-0 dark:bg-gray-900 pr-5 sm-h-[100px] w-full rounded-md flex items-center justify-between">
+                                <div className="flex space-x-5">
+                                    <img src="https://source.unsplash.com/75x75/?portrait" alt="" className="rounded-l-md hidden sm:block sm:h-[100px] sm:w-[150px]" />
+                                    <div className="flex flex-col my-auto">
+                                        <h4 className="text-xs md:text-lg font-semibold text-gray-700 text-center   md:text-left">Background profile</h4>
+                                        <p className="text-gray-500 text-xs md:text:sm">image</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <Ripples className='rounded-full'>
+                                        <button onClick={() => setShowSetting(!showSetting)} className='p-2 h-11 w-11 rounded-full gap-3 border flex items-center justify-between font-extrabold text-blue-900'>
+                                            <BsThreeDotsVertical size={25} />
+                                        </button>
+                                    </Ripples>
+                                    <div style={{ display: showSetting ? "block" : "none" }} className="profilesetting  bg-white absolute right-0 w-92 py-2 mt-1 border border-gray-200 shadow-2xl ">
+                                        <div className="py-2">
+                                            <button onClick={() => {}} className="w-full flex items-center py-1.5 px-6 space-x-2 hover:bg-gray-200">
+                                                <RiDeleteBin6Line />
+                                                <span className="text-sm text-gray-700">Remove attachment</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </li>
+                        </ul>
+
+                        {/* attach file */}
+                        <div className="mt-5">
+                            <Ripples className='rounded-full'>
+                                <button className='p-2 rounded-full gap-3 border flex items-center justify-between font-extrabold text-blue-900'>
+                                    <FiUpload size={25} />
+                                    <p className="text-blue-500">Attach File</p>
+                                </button>
+                            </Ripples>
+                        </div>
+                    </section>
+
+                    <footer className="flex justify-end px-8 pb-8 pt-4">
+                        <button id="submit" className="rounded-full px-3 py-1 bg-blue-700 hover:bg-blue-500 text-white focus:shadow-outline focus:outline-none">
+                            Post Now
+                        </button>
+                        <button id="cancel" className="ml-3 rounded-full px-3 py-1 hover:bg-gray-300 focus:shadow-outline focus:outline-none">
+                            Cancel
+                        </button>
+                    </footer>
+                </article>
+            </main>
+        </div>
     )
 }
 

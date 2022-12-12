@@ -14,6 +14,8 @@ import Students from "./pages/Students";
 import TeachersPage from "./pages/TeachersPage";
 import ParentsPage from "./pages/ParentsPage";
 import ProfilePage from "./pages/ProfilePage";
+import UpdatePage from "./pages/UpdatePage";
+import AssignmentPage from "./pages/AssignmentPage";
 
 axios.defaults.baseURL = `http://localhost:3500`
 function App() {
@@ -55,11 +57,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/profile/:userId" element={<ProfilePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/students" element={<Students />} />
           <Route path="/teachers" element={<TeachersPage />} />
           <Route path="/parents" element={<ParentsPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/update" element={<UpdatePage />} />
+          <Route path="/assignment" element={<AssignmentPage />} />
         </Routes>
         <Footer />
       </div>

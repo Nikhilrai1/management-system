@@ -37,3 +37,7 @@ Thu Dec 01 2022 21:57:15 GMT+0545 (Nepal Time) 	 undefined ReferenceError: Paren
 Thu Dec 01 2022 21:57:16 GMT+0545 (Nepal Time) 	 undefined ReferenceError: Parents is not defined	 GET	 undefined	  undefined 
 Thu Dec 01 2022 22:30:25 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 POST	 undefined	  http://127.0.0.1:5173 
 Thu Dec 01 2022 22:36:06 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 POST	 undefined	  http://127.0.0.1:5173 
+Wed Dec 07 2022 17:54:03 GMT+0545 (Nepal Time) 	 undefined Error: Not allowed by CORS	 POST	 undefined	  http://localhost:5173 
+Wed Dec 07 2022 17:55:08 GMT+0545 (Nepal Time) 	 undefined Error: Not allowed by CORS	 POST	 undefined	  http://localhost:5173 
+Wed Dec 07 2022 17:56:18 GMT+0545 (Nepal Time) 	 undefined Error: Not allowed by CORS	 POST	 undefined	  http://localhost:5173 
+Wed Dec 07 2022 21:09:43 GMT+0545 (Nepal Time) 	 undefined MongooseError: Query was already executed: Student.findOneAndUpdate({ _id: new ObjectId("638791ac9afd47...	 PUT	 undefined	  http://localhost:5173 
