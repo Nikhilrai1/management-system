@@ -514,14 +514,15 @@ const Register = ({ students }) => {
                                             type={"text"}
                                         />)
                                     }
-                                    {form.role === "teacher" && (<OptionInput
-                                        name={"subject"}
-                                        title={"Subject"}
-                                        value={form.subject}
-                                        icon={<BiBook />}
-                                        onChange={handleInput}
-                                        options={teacherSubjects}
-                                    />)}
+                                    {form.role === "teacher" && (
+                                        <OptionInput
+                                            name={"subject"}
+                                            title={"Subject"}
+                                            value={form.subject}
+                                            icon={<BiBook />}
+                                            onChange={handleInput}
+                                            options={teacherSubjects}
+                                        />)}
                                     <Input
                                         name={"role"}
                                         title={"Role"}

@@ -28,7 +28,7 @@ const ParentsSchema = new mongoose.Schema({
     },
     password: { type: String, required: [true, "required password"] },
     address: { type: String, required: [true, "required address"] },
-    parentsOf: { type: Array, required: [true, "required subject"] },
+    parentsOf: { type: Array, required: [true, "required at least one kid"] },
     dob: { type: String, required: [true, "required dob"] },
     mobile: { type: String, minLength: 10, maxLength: 10, required: [true, "required mobile"], unique: [true, "Please add another mobile number"] },
     role: {type: String, default: "Parents"}

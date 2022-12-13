@@ -1,10 +1,10 @@
 import React from 'react'
-import Upload from '../components/Upload'
+import Assignment from '../components/Assignment'
 
 const AssignmentPage = () => {
   return (
     <div>
-        <Upload />
+        <Assignment />
     </div>
   )
 }

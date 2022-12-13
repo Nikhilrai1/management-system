@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 const cors = require("cors");
+const fileUpload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/errorHandler");
@@ -18,21 +19,13 @@ app.use(cookieParser());
 
 
 
+
 // routes
 app.use("/api/auth/student", require("./routes/studentRoute"))
 app.use("/api/auth/teacher", require("./routes/teacherRoute"))
 app.use("/api/auth/parents", require("./routes/parentsRoute"))
 app.use("/api/auth/admin", require("./routes/adminRoute"))
 app.use("/api/auth", require("./routes/utilityAuthRoute"))
-
-
-app.get("/", (req, res) => {
-    res.cookie('token', "abcd", {
-        httpOnly: true, //accessible only by web server 
-        expires: new Date(Date.now() + 25892000000)
-    })
-    res.json({ message: req.cookies?.token })
-})
 
 // error handler
 app.use(errorHandler)
