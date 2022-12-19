@@ -6,7 +6,7 @@ const AssignmentSchema = new mongoose.Schema({
     grade: { type: String, required: true },
     section: { type: String, required: true },
     subject: { type: String, required: true },
-    desc: { type: String, required: true },
+    description: { type: String, required: true },
     deadline: { type: String, required: true },
     files: { type: Array, default: []},
     creatorName: { type: String, required: true},

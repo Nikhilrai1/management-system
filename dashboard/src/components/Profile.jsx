@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { BiEdit, BiShareAlt } from 'react-icons/bi';
+import { BsFillCameraFill } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getTheme } from '../app/features/themeSlice';
@@ -24,7 +25,7 @@ const Profile = ({ profile }) => {
                                 <BiShareAlt />
                                 <span className="text-sm text-gray-700">Share Profile</span>
                             </button>
-                            <button onClick={() => navigate("/update",{state: {profile: profile}})} className="w-full flex items-center py-1.5 px-6 space-x-2 hover:bg-gray-200">
+                            <button onClick={() => navigate("/update", { state: { profile: profile } })} className="w-full flex items-center px-6 py-1.5 space-x-2 hover:bg-gray-200">
                                 <BiEdit />
                                 <span className="text-sm text-gray-700">Edit Profile</span>
                             </button>
@@ -35,7 +36,12 @@ const Profile = ({ profile }) => {
                     <img src="/profile-background.jpg" className="w-full h-full rounded-tl-lg rounded-tr-lg" />
                 </div>
                 <div className="flex flex-col items-center -mt-20">
-                    <img src={profile.photo ? profile.photo : "/unknown_user.png"} className="w-40  border-6 border-white rounded-full" />
+                    <div className='relative'>
+                        <img src={profile.photo ? profile.photo : "/unknown_user.png"} className="w-40 h-40  border-6 border-white rounded-full" />
+                        <button className="w-10 h-10 rounded-full cursor-pointer absolute right-0 bottom-3 text-white text-2xl p-1 bg-gray-700 flex items-center justify-center">
+                            <BsFillCameraFill />
+                        </button>
+                    </div>
                     <div className="flex items-center space-x-2 mt-2">
                         <p className="text-2xl">{profile.fullname}</p>
                         <span className="bg-blue-500 rounded-full p-1" title="Verified">
@@ -76,27 +82,27 @@ const Profile = ({ profile }) => {
                                 <span className="font-bold w-24">Gender:</span>
                                 <span className="text-gray-700">{profile?.gender}</span>
                             </li>
-                          {profile.role === "student" && (
-                            <>
-                          <li className="flex border-y py-2">
-                                <span className="font-bold w-24">Stream:</span>
-                                <span className="text-gray-700">{profile?.stream}</span>
-                            </li>
-                            <li className="flex border-y py-2">
-                                <span className="font-bold w-24">Grade:</span>
-                                <span className="text-gray-700">{profile?.grade}</span>
-                            </li>
-                            <li className="flex border-y py-2">
-                                <span className="font-bold w-24">Section:</span>
-                                <span className="text-gray-700">{profile?.section}</span>
-                            </li>
-                            <li className="flex border-y py-2">
-                                <span className="font-bold w-24">Roll No:</span>
-                                <span className="text-gray-700">{profile?.roll}</span>
-                            </li>
-                            </>
+                            {profile.role === "student" && (
+                                <>
+                                    <li className="flex border-y py-2">
+                                        <span className="font-bold w-24">Stream:</span>
+                                        <span className="text-gray-700">{profile?.stream}</span>
+                                    </li>
+                                    <li className="flex border-y py-2">
+                                        <span className="font-bold w-24">Grade:</span>
+                                        <span className="text-gray-700">{profile?.grade}</span>
+                                    </li>
+                                    <li className="flex border-y py-2">
+                                        <span className="font-bold w-24">Section:</span>
+                                        <span className="text-gray-700">{profile?.section}</span>
+                                    </li>
+                                    <li className="flex border-y py-2">
+                                        <span className="font-bold w-24">Roll No:</span>
+                                        <span className="text-gray-700">{profile?.roll}</span>
+                                    </li>
+                                </>
                             )}
-                            {profile.role === "teacher" && ( <li className="flex border-b py-2">
+                            {profile.role === "teacher" && (<li className="flex border-b py-2">
                                 <span className="font-bold w-24">Subject:</span>
                                 <span className="text-gray-700">{profile?.subject}</span>
                             </li>)}

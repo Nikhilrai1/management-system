@@ -3,13 +3,13 @@ import DataTable from 'react-data-table-component';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { CSVLink } from "react-csv";
 
-const DataGrid = ({title,columns,data}) => {
+const DataGrid = ({ title, columns, data }) => {
   const [filterData, setFilterData] = useState(data);
-    const [search, setSearch] = useState("");
-    useEffect(() => {
-      const newSearchData = data.filter(item => item.fullname.toLowerCase().includes(search.toLowerCase()))
-      setFilterData(newSearchData)
-  }, [search])
+  const [search, setSearch] = useState("");
+  // useEffect(() => {
+  //     const newSearchData = data.filter(item => item["fullname"].toLowerCase().includes(search.toLowerCase()))
+  //     setFilterData(newSearchData)
+  // }, [search])
   return (
     <DataTable
       title={title}

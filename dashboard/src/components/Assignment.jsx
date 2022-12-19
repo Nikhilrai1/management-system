@@ -189,7 +189,6 @@ const studentAssignment = {
     subject: "science",
     deadline: formatDate(new Date().getTime() + 30 * 24 * 60 * 60 * 1000),
     description: "",
-    file: "",
 }
 const Assignment = () => {
     const [form, setForm] = useState(studentAssignment);
@@ -197,7 +196,6 @@ const Assignment = () => {
     const [showSetting, setShowSetting] = useState(false);
     const fileRef = useRef();
     const [progress, setProgress] = useState(0);
-    const [URLs, setURLs] = useState([]);
     const handleInput = (e) => {
         setForm(prev => {
             return {
@@ -215,44 +213,67 @@ const Assignment = () => {
         }
     };
 
-    const uploadFile = (files) => {
+    const uploadFile = async (files) => {
         const promises = []
-        files.map((file) => {
-            const sotrageRef = ref(storage, `Assignment/${file.name}`);
-
-            const uploadTask = uploadBytesResumable(sotrageRef, file);
-            promises.push(uploadTask)
-            uploadTask.on(
-                "state_changed",
-                (snapshot) => {
-                    const prog = Math.round(
-                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                    );
-                    setProgress(prog);
-                },
-                (error) => console.log(error),
-                async () => {
-                    await getDownloadURL(uploadTask.snapshot.ref).then((downloadURLs) => {
-                        setURLs(prevState => [...prevState, downloadURLs])
-                    });
-                }
-            );
-
-
-        })
-
-        Promise.all(promises)
-            .then(() => {
-                setFiles([])
-                alert('All Files are upload')
+        const filesPromises = new Promise(async (resolve, reject) => {
+            files.map(async (file) => {
+                const sotrageRef = ref(storage, `Assignment/${file.name}`);
+                const uploadTask = uploadBytesResumable(sotrageRef, file);
+                uploadTask.on(
+                    "state_changed",
+                    (snapshot) => {
+                        const prog = Math.round(
+                            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                        );
+                        setProgress(prog);
+                        if (prog >= 100) {
+                            console.log("uploaded")
+                            resolve(promises)
+                        }
+                    },
+                    (error) => {
+                        console.log(error)
+                        reject(error)
+                    },
+                );
+                const downloadUrl = await getDownloadURL(uploadTask.snapshot.ref)
+                promises.push({
+                    url: downloadUrl,
+                    uploadTask
+                })
             })
-            .catch(err => console.log(err))
-
+        })
+        return filesPromises;
     };
 
-
     const postAssignment = async (files) => {
-        console.log(form)
+        try {
+            let newForm = form;
+            if ((files.length !== 0) && files) {
+                const uploadedFiles = await uploadFile(files)
+                newForm = { files: uploadedFiles, ...form }
+            }
+            const res = await fetch("/api/assignment/upload", {
+                method: 'POST', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newForm),
+                credentials: "include"
+            })
+
+            const data = await res.json();
+            if(data.success){
+                console.log(data)
+                alert("Assignment posted successfully...")
+                setFiles([])
+            }
+
+        }
+        catch (error) {
+            console.log(error)
+        }
+
     }
 
     return (
@@ -264,7 +285,7 @@ const Assignment = () => {
                             <div className="text-4xl">
                                 <BsChatLeft />
                             </div>
-                            <p className='text-2xl'>Assignment</p>
+                            <p className='text-2xl'>Create Assignment</p>
                         </div>
                         <div className="flex -mx-3">
                             <OptionInput

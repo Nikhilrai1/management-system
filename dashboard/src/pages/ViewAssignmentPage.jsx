@@ -6,24 +6,25 @@ import { deleteUser } from '../utils/authServices';
 
 const columns = [
     {
-        name: 'ID',
-        selector: row => row.id,
+        name: 'Filename',
+        selector: row => row.files[0]?.uploadTask?._metadata?.name,
         sortable: true,
         grow: 1
     },
     {
-        name: 'Profile',
-        selector: row => <img src={row.photo ? row.photo : "./unknown_user.png"} className='h-[30px] w-[30px] rounded-full' alt="img" />,
-        grow: 1
-    },
-    {
-        name: 'Fullname',
-        selector: row => row.fullname,
+        name: 'FileType',
+        selector: row => row.files[0]?.uploadTask?._blob?.type_,
         sortable: true,
     },
     {
-        name: 'Gender',
-        selector: row => row.gender,
+        name: 'Stream',
+        selector: row => row.stream,
+        sortable: true,
+        grow: 2
+    },
+    {
+        name: 'Grade',
+        selector: row => row.grade,
         sortable: true,
         grow: 1
     },
@@ -32,29 +33,11 @@ const columns = [
         selector: row => row.subject,
         sortable: true,
         grow: 1
-    },
-    {
-        name: 'Email',
-        selector: row => row.email,
-        sortable: true,
-        grow: 2
-    },
-    {
-        name: 'Mobile',
-        selector: row => row.mobile,
-        sortable: true,
-        grow: 1
-    },
-    {
-        name: 'Address',
-        selector: row => row.address,
-        sortable: true,
-        grow: 1
 
     },
     {
-        name: 'DOB',
-        selector: row => row.dob,
+        name: 'Deadline',
+        selector: row => row.deadline,
         sortable: true,
         center: true,
         grow: 1
@@ -62,16 +45,15 @@ const columns = [
     {
         name: 'Actions',
         cell: (row) => {
-                const navigate = useNavigate();
             return (
                 <div className="flex gap-1 justify-between items-center">
-                    <button onClick={() => navigate(`/profile`,{state: {profile: row}})} className="px-2 py-1 text-xs bg-blue-400 rounded-md text-white hover:bg-blue-600">
+                    <button onClick={() => { }} className="px-2 py-1 text-xs bg-blue-400 rounded-md text-white hover:bg-blue-600">
                         view
                     </button>
-                    <button onClick={() => alert(row.id)} className="px-2 py-1 text-xs bg-green-400 rounded-md text-white hover:bg-green-600">
+                    <button onClick={() => { }} className="px-2 py-1 text-xs bg-green-400 rounded-md text-white hover:bg-green-600">
                         Edit
                     </button>
-                    <button onClick={() => deleteUser(row._id, "Teacher")} className="px-2 py-1 text-xs bg-red-400 rounded-md text-white hover:bg-red-600">
+                    <button onClick={() => { }} className="px-2 py-1 text-xs bg-red-400 rounded-md text-white hover:bg-red-600">
                         Delete
                     </button>
                 </div>
@@ -83,12 +65,12 @@ const columns = [
 ];
 
 
-function TeachersPage() {
-    const [teachers, setTeachers] = useState([])
+function ViewAssignmentPage() {
+    const [assignment, setAssignment] = useState([])
     useLayoutEffect(() => {
-        const getAllTeachers = async () => {
+        const getAssignments = async () => {
             try {
-                const res = await fetch(`/api/auth/admin/getAllTeachers`, {
+                const res = await fetch(`/api/assignment/getAllAssignment`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -98,7 +80,7 @@ function TeachersPage() {
 
                 const data = await res.json();
                 if (data.success) {
-                    setTeachers(data.teachers)
+                    setAssignment(data.assignment)
                 }
                 else {
                     alert(data.message)
@@ -108,21 +90,21 @@ function TeachersPage() {
                 console.log(err)
             }
         }
-        getAllTeachers()
+        getAssignments()
     }, [])
     return (
         <div className='m-10 shadow-xl drop-shadow-xl'>
-            {teachers.length != 0 ?
+            {assignment.length != 0 ?
                 (<DataGrid
-                    title={"Teachers"}
+                    title={"Assignment"}
                     columns={columns}
-                    data={teachers}
+                    data={assignment}
                 />
-                ): (
+                ) : (
                     <h1>Loading...</h1>
                 )}
         </div>
     )
 };
 
-export default TeachersPage
+export default ViewAssignmentPage

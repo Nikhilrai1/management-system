@@ -16,6 +16,8 @@ import ParentsPage from "./pages/ParentsPage";
 import ProfilePage from "./pages/ProfilePage";
 import UpdatePage from "./pages/UpdatePage";
 import AssignmentPage from "./pages/AssignmentPage";
+import ViewAssignmentPage from "./pages/ViewAssignmentPage";
+import NoticePage from "./pages/NoticePage";
 
 axios.defaults.baseURL = `http://localhost:3500`
 function App() {
@@ -64,6 +66,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/update" element={<UpdatePage />} />
           <Route path="/assignment" element={<AssignmentPage />} />
+          <Route path="/viewAssignment" element={<ViewAssignmentPage />} />
+          <Route path="/notice" element={<NoticePage />} />
         </Routes>
         <Footer />
       </div>

@@ -12,7 +12,7 @@ const getAllStudents = asyncHandler(async (req, res) => {
     const admin = await Teacher.findById(req.user._id);
     if (!admin && admin?.role !== "Admin") return res.status(401).json({ success: false, message: "UnAuthorized" })
 
-    const students = await Student.find();
+    const students = await Student.find().select("-password").exec()
     res.status(200).json({ success: true, students })
 })
 
@@ -79,7 +79,9 @@ const deleteParents = asyncHandler(async (req, res) => {
 const updateUser = asyncHandler(async (req, res) => {
     const admin = await Teacher.findById(req.user._id);
     console.log(req.body)
-    const { _id, role } = req.body;
+    const { _id, role, ...updateData} = req.body;
+    console.log(updateData)
+    console.log(role)
     if (!admin && admin?.role !== "Admin") return res.status(401).json({ success: false, message: "UnAuthorized" })
     if (!role) return res.status(400).json({ success: false, message: "Require user role" })
 
@@ -96,30 +98,25 @@ const updateUser = asyncHandler(async (req, res) => {
     // logic here
     let user;
     let updateUser;
-    let hashedPassword;
-    if (req.body.password) {
-        hashedPassword = await bcrypt.hash(req.body.password, 10);
-    }
     if (role === "student") {
         user = await Student.findById(_id);
         if (!user) return res.status(400).json({ success: false, message: "student not found" })
-        updateUser = await Student.findByIdAndUpdate(user._id, { ...req.body, password: hashedPassword }, updateCallback);
+        updateUser = await Student.findByIdAndUpdate(user._id, { ...updateData }); // make sure to destructure updateData else give error
     }
-    else if (role === "teacher") {
+    else if (role === "teacher" || role === "Admin") {
         user = await Teacher.findById(_id);
         if (!user) return res.status(400).json({ success: false, message: "teacher not found" })
-        updateUser = await Teacher.findByIdAndUpdate(user._id, { ...req.body, password: hashedPassword }, updateCallback);
+        updateUser = await Teacher.findByIdAndUpdate(user._id, { ...updateData });
     }
     else if (role === "parents") {
         user = await Parents.findById(_id);
         if (!user) return res.status(400).json({ success: false, message: "parents not found" })
-        updateUser = await Parents.findByIdAndUpdate(user._id, { ...req.body, password: hashedPassword }, updateCallback);
+        updateUser = await Parents.findByIdAndUpdate(user._id, { ...updateData });
     }
     else return res.status(400).json({ success: false, message: "Invalid role of user" })
 
-    if (updateUser) {
-        res.status(200).json({ success: true, message: `${updateUser.fullname} account is updated successfully` })
-    }
+    if (updateUser) return res.status(200).json({ success: true, message: `${updateUser.fullname} account is updated successfully` })
+    
     res.status(200).json({ success: false, message: `Account is not updated` })
 })
 module.exports = {

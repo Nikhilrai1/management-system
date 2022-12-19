@@ -24,7 +24,8 @@ const columns = [
     },
     {
         name: 'Profile',
-        selector: row => <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" className='h-[30px] w-[30px] rounded-full' alt="img" />
+        selector: row => <img src={row.photo ? row.photo : "./unknown_user.png"} className='h-[30px] w-[30px] rounded-full' alt="img" />,
+        grow: 1
     },
     {
         name: 'Fullname',

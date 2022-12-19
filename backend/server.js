@@ -21,11 +21,19 @@ app.use(cookieParser());
 
 
 // routes
+
+// auth
 app.use("/api/auth/student", require("./routes/studentRoute"))
 app.use("/api/auth/teacher", require("./routes/teacherRoute"))
 app.use("/api/auth/parents", require("./routes/parentsRoute"))
 app.use("/api/auth/admin", require("./routes/adminRoute"))
 app.use("/api/auth", require("./routes/utilityAuthRoute"))
+
+// assignment
+app.use("/api/assignment", require("./routes/assignmentRoute"))
+app.use("/api/event", require("./routes/EventRoute"))
+
+
 
 // error handler
 app.use(errorHandler)

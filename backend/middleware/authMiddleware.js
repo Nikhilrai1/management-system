@@ -8,7 +8,6 @@ const Teacher = require("../model/Teacher");
 const protect = asyncHandler(async (req, res, next) => {
     try {
         const token = req.cookies.token;
-        console.log(req.cookies)
         if (!token) return res.status(401).json({ message: "UnAuthorized! required authorized user please login again." })
         // verified token
         const verified = jwt.verify(token, process.env.JWT_SECRECT);

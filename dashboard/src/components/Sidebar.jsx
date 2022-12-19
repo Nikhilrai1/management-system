@@ -34,6 +34,11 @@ const sidebarNavigations = [
         icon: <MdOutlineAssignment size={iconSize} />
     },
     {
+        name: "All Assignment",
+        link: "/viewAssignment",
+        icon: <MdOutlineAssignment size={iconSize} />
+    },
+    {
         name: "Notifications",
         link: "/notifications",
         icon: <RiNotification3Line size={iconSize} />
@@ -76,6 +81,8 @@ const sidebarAuthNav = [
 const SidebarLink = ({ name, link, color, icon, activeColor }) => {
     const navStyle = `w-full flex items-center gap-4 text-sm font-light px-4 py-3 rounded-lg`;
     const activeNavStyle = `to-blue-400 shadow-md`;
+
+
     return (
         <Ripples className='w-full'>
             <li className="rounded-lg mb-2 w-full">
@@ -96,6 +103,29 @@ const SidebarLink = ({ name, link, color, icon, activeColor }) => {
 const Sidebar = () => {
     const [showSidebar, setShowSidebar] = useState('-left-64');
     const { theme, themeColor, themeHoverColor } = useSelector(getTheme)
+    const logout = async () => {
+        try {
+            const res = await fetch(`/api/auth/logout`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: "include"
+            })
+
+            const data = await res.json();
+            if (data.success) {
+                console.log(data)
+                alert("Logout successfull")
+            }
+            else {
+                alert(data.message)
+            }
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
     return (
         <>
             <AdminNavbar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
@@ -113,12 +143,12 @@ const Sidebar = () => {
 
                 <div className="flex-col bg-transparent  items-stretch min-h-full flex-nowrap px-0 relative">
                     <a
-                        href="https://www.heraldintlcollege.edu.np/images/Navbar_001_College%20(1).png"
+                        href={"#"}
                         target="_blank"
                         rel="noreferrer"
                         className="mt-2 text-center w-full inline-block"
                     >
-                        <img className="rounded-lg" src="https://www.heraldintlcollege.edu.np/images/Navbar_001_College%20(1).png" alt="logo" />
+                        <img className="rounded-lg" src={"./logo.png"} alt="logo" />
                     </a>
                     <div className="flex flex-col">
                         <hr className="my-4 min-w-full" />
@@ -157,10 +187,10 @@ const Sidebar = () => {
                             ))}
                             <Ripples className="w-full">
                                 <li className="w-full bg-gradient-to-tr from-purple-500 to-purple-700 px-4 rounded-lg text-white">
-                                    <a href="#" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-4 text-sm font-light py-3">
+                                    <button onClick={() => logout()} className="flex items-center justify-center gap-4 text-sm font-light py-3">
                                         Logout
                                         <MdLogout />
-                                    </a>
+                                    </button>
                                 </li>
                             </Ripples>
                         </ul>

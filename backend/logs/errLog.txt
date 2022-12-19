@@ -41,3 +41,24 @@ Wed Dec 07 2022 17:54:03 GMT+0545 (Nepal Time) 	 undefined Error: Not allowed by
 Wed Dec 07 2022 17:55:08 GMT+0545 (Nepal Time) 	 undefined Error: Not allowed by CORS	 POST	 undefined	  http://localhost:5173 
 Wed Dec 07 2022 17:56:18 GMT+0545 (Nepal Time) 	 undefined Error: Not allowed by CORS	 POST	 undefined	  http://localhost:5173 
 Wed Dec 07 2022 21:09:43 GMT+0545 (Nepal Time) 	 undefined MongooseError: Query was already executed: Student.findOneAndUpdate({ _id: new ObjectId("638791ac9afd47...	 PUT	 undefined	  http://localhost:5173 
+Thu Dec 15 2022 19:28:19 GMT+0545 (Nepal Time) 	 undefined ValidationError: Student validation failed: mobile: Required Mobile Number, dob: Required DOB, address: Required Address, password: Required Password, roll: Required name, gender: Required gender, fullname: Required name, id: Required id	 POST	 undefined	  http://localhost:5173 
+Thu Dec 15 2022 19:31:05 GMT+0545 (Nepal Time) 	 undefined ValidationError: Student validation failed: mobile: Required Mobile Number, dob: Required DOB, address: Required Address, password: Required Password, roll: Required name, gender: Required gender, fullname: Required name, id: Required id	 POST	 undefined	  http://localhost:5173 
+Thu Dec 15 2022 19:34:51 GMT+0545 (Nepal Time) 	 undefined ValidationError: Assignment validation failed: desc: Path `desc` is required.	 POST	 undefined	  http://localhost:5173 
+Sat Dec 17 2022 17:10:02 GMT+0545 (Nepal Time) 	 undefined MongooseError: Query was already executed: Teacher.findOneAndUpdate({ _id: new ObjectId("6378bfcdf2e73e...	 PUT	 undefined	  http://localhost:5173 
+Sat Dec 17 2022 18:24:21 GMT+0545 (Nepal Time) 	 undefined MongooseError: Query was already executed: Teacher.findOneAndUpdate({ _id: new ObjectId("6378bfcdf2e73e...	 PUT	 undefined	  http://localhost:5173 
+Sat Dec 17 2022 18:28:06 GMT+0545 (Nepal Time) 	 undefined MongooseError: Query was already executed: Teacher.findOneAndUpdate({ _id: new ObjectId("6378bfcdf2e73e...	 PUT	 undefined	  http://localhost:5173 
+Sat Dec 17 2022 18:28:09 GMT+0545 (Nepal Time) 	 undefined MongooseError: Query was already executed: Teacher.findOneAndUpdate({ _id: new ObjectId("6378bfcdf2e73e...	 PUT	 undefined	  http://localhost:5173 
+Sat Dec 17 2022 18:30:54 GMT+0545 (Nepal Time) 	 undefined MongooseError: Query was already executed: Teacher.findOneAndUpdate({ _id: new ObjectId("6378bfcdf2e73e...	 PUT	 undefined	  http://localhost:5173 
+Sat Dec 17 2022 18:31:47 GMT+0545 (Nepal Time) 	 undefined MongooseError: Query was already executed: Teacher.findOneAndUpdate({ _id: new ObjectId("6378bfcdf2e73e...	 PUT	 undefined	  http://localhost:5173 
+Sat Dec 17 2022 18:38:06 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 PUT	 undefined	  http://localhost:5173 
+Sat Dec 17 2022 18:46:29 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 PUT	 undefined	  http://localhost:5173 
+Sat Dec 17 2022 18:52:02 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 PUT	 undefined	  http://localhost:5173 
+Sat Dec 17 2022 18:56:07 GMT+0545 (Nepal Time) 	 undefined MongooseError: Query was already executed: Student.findOneAndUpdate({ _id: new ObjectId("638791ac9afd47...	 PUT	 undefined	  http://localhost:5173 
+Sat Dec 17 2022 19:01:28 GMT+0545 (Nepal Time) 	 undefined MongooseError: Query was already executed: Student.findOneAndUpdate({ _id: new ObjectId("638791ac9afd47...	 PUT	 undefined	  http://localhost:5173 
+Sat Dec 17 2022 19:08:17 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 PUT	 undefined	  http://localhost:5173 
+Sat Dec 17 2022 19:09:39 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 PUT	 undefined	  http://localhost:5173 
+Sat Dec 17 2022 19:12:24 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 PUT	 undefined	  http://localhost:5173 
+Mon Dec 19 2022 12:49:29 GMT+0545 (Nepal Time) 	 undefined TypeError: Cannot read properties of undefined (reading '_id')	 POST	 undefined	  undefined 
+Mon Dec 19 2022 13:23:03 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 POST	 undefined	  http://localhost:5173 
+Mon Dec 19 2022 13:26:01 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 POST	 undefined	  http://localhost:5173 
+Mon Dec 19 2022 13:30:07 GMT+0545 (Nepal Time) 	 undefined Error: Cannot set headers after they are sent to the client	 POST	 undefined	  http://localhost:5173 
