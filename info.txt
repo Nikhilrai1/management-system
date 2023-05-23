@@ -1,0 +1,1 @@
+This is the college management system made by mern stack.This include customizable theme setting. Student, Parents and Teacher Login and registration, Online registration, attendance, online assignment etc are feature already built. 
